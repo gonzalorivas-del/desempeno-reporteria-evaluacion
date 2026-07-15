@@ -1,0 +1,99 @@
+/*
+ * GraficoAraniaSection — Vista Equipo (Rex+ Desempeño)
+ * Fuente: Figma nodo 869:11810.
+ *
+ * Tokens usados (src/tokens/tokens.json):
+ *   colors.blanco          → #FFFFFF   fondo de la tarjeta
+ *   colors.panel           → #5780AD   título de sección
+ *   colors.negro-textos    → #333333   subtítulo
+ *   colors.gris-oscuro     → #666666   sub-subtítulo
+ *   colors.general         → #B2E5FF   chip activo (fondo)
+ *   colors.primario        → #1E5591   texto chip activo
+ *   colors.gris-secundario → #E5E5E5   chip inactivo (fondo)
+ *   zafiro.border-radius.br-5 → 16px   radio de la tarjeta
+ */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;                                    /* zafiro.margin.m-3 */
+  flex: 1 0 0;
+  min-width: 0;
+  padding: 24px;                                /* zafiro.padding.p-5 */
+  background-color: #FFFFFF;                    /* colors.blanco */
+  border-radius: 16px;                          /* zafiro.border-radius.br-5 */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.title {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #5780AD;                               /* colors.panel */
+}
+
+.subtitle {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #333333;                               /* colors.negro-textos */
+}
+
+.subsubtitle {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #666666;                               /* colors.gris-oscuro */
+}
+
+.toggles {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  width: 100%;
+}
+
+.toggleChip {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  border-radius: 16px;
+  background-color: #E5E5E5;                    /* colors.gris-secundario */
+  color: #666666;                               /* colors.gris-oscuro */
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.toggleChipActive {
+  background-color: #B2E5FF;                    /* colors.general */
+  color: #1E5591;                                /* colors.primario */
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: 100%;
+}
+
+.chip {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  border-radius: 16px;
+  background-color: #B2E5FF;                    /* colors.general */
+  color: #1E5591;                                /* colors.primario */
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  line-height: 1.3;
+  white-space: nowrap;
+}

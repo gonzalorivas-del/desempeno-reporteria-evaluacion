@@ -1,0 +1,541 @@
+/*
+ * DataTable — Zafiro Design System (Rex+) · Type=Portal
+ *
+ * Tokens usados (src/tokens/tokens.json):
+ *   colors.auxiliar          → #B6CEE7  (bordes de header y celdas)
+ *   colors.blanco            → #FFFFFF  (fondo tarjeta)
+ *   colors.negro-textos      → #333333  (texto celdas)
+ *   colors.gris-oscuro       → #666666  (texto filtro / placeholder búsqueda)
+ *   colors.gris-deshabilitado→ #CCCCCC  (borde input búsqueda · fondo barra progreso)
+ *   colors.importante        → #00B4FF  (página activa paginador)
+ *   colors.progress-fill     → #6DD400  (relleno barra de progreso)
+ *   colors.blanco            → #FFFFFF  (texto página activa)
+ *   zafiro.border-radius.br-5→ 24px     (border-radius tarjeta y pill búsqueda)
+ *   zafiro.padding.p-4       → 16px     (padding celdas)
+ *   zafiro.padding.p-5       → 24px     (padding lateral contenido)
+ *   zafiro.padding.p-3       → 14px     (padding y)
+ *   effects.elevation-1      → 0px 2px 4px rgba(0,0,0,0.15)
+ *   typography.font-size.14  → 14px     (texto headers / celdas)
+ *   typography.font-size.16  → 16px     (texto filtro / búsqueda / paginador)
+ */
+
+/* ─── Tarjeta contenedora ─────────────────────────────────────────────────── */
+.card {
+  background-color: #FFFFFF;
+  border-radius: 24px;                              /* zafiro.border-radius.br-5 */
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15); /* effects.elevation-1 */
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
+  max-width: 1256px;
+  font-family: 'Roboto', sans-serif;
+  /* overflow: hidden eliminado para permitir que el panel FilterApp
+     se despliegue sobre el contenido de la tabla */
+}
+
+/* ─── Header: filtro + búsqueda ───────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding-left: 32px;
+  padding-right: 24px;                              /* zafiro.padding.p-5 */
+  flex-shrink: 0;
+}
+
+/* Cuando el trigger de Filtro se oculta (showFilterTrigger=false), la búsqueda
+   queda sola y alineada a la derecha (ej. panel lateral de colaboradores). */
+.headerSearchOnly {
+  justify-content: flex-end;
+}
+
+/* Título en línea dentro del header (ej. "Organización"), alternativa al Filtro */
+.tableTitle {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #5780AD;                                    /* colors.panel */
+}
+
+/* ─── Wrapper del filtro (ancla del panel absoluto) ──────────────────────── */
+.filterWrapper {
+  position: relative;
+  padding: 0 88px;
+}
+
+/* ─── Panel FilterApp — desplegado sobre el contenido de la tabla ─────────── */
+.filterPanel {
+  position: absolute;
+  top: calc(100% + 8px);  /* 8px por debajo del trigger */
+  left: 0;
+  z-index: 20;
+}
+
+.searchWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #CCCCCC;                        /* colors.gris-deshabilitado */
+  border-radius: 24px;                              /* zafiro.border-radius.br-5 */
+  padding: 4px 16px;
+  width: 252px;
+  flex-shrink: 0;
+}
+
+.searchIcon {
+  color: #666666;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;                                  /* typography.font-size.16 */
+  font-weight: 400;
+  color: #666666;                                   /* colors.gris-oscuro */
+  line-height: 1.3;
+}
+
+.searchInput::placeholder {
+  color: #666666;
+}
+
+/* ─── Contenido / tabla ───────────────────────────────────────────────────── */
+.tableWrapper {
+  overflow-x: auto;
+  flex-shrink: 0;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* ─── Encabezado ──────────────────────────────────────────────────────────── */
+.th {
+  background-color: #F6F9FA;                        /* colors.fondo */
+  border-bottom: 1px solid #B6CEE7;                 /* colors.auxiliar */
+  padding: 8px 4px 12px;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;                                  /* typography.font-size.14 */
+  font-weight: 500;
+  color: #000000;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.thInner {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.thSortBtn {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  white-space: inherit;
+}
+
+.thSortIcon {
+  color: #B6CEE7;                                   /* colors.auxiliar */
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.thSortIcon.active {
+  color: #1E5591;
+}
+
+.thCheckbox,
+.thActions {
+  width: 56px;
+  text-align: center;
+}
+
+.thIcon {
+  width: 247px;
+}
+
+.thProgress {
+  width: 247px;
+}
+
+.thAvatarText {
+  width: 180px;
+}
+
+.thText {
+  width: 110px;
+}
+
+.thLink {
+  width: 100px;
+}
+
+.thLinkAvatar {
+  width: 150px;
+}
+
+.thMetric {
+  width: 90px;
+}
+
+.thBadge {
+  width: 183px;
+}
+
+/* ─── Celdas ──────────────────────────────────────────────────────────────── */
+.td {
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #B6CEE7;                 /* colors.auxiliar */
+  height: 48px;
+  width: 100%;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;                                  /* typography.font-size.14 */
+  font-weight: 400;
+  color: #333333;                                   /* colors.negro-textos */
+  line-height: 1.3;
+  padding: 12px 8px;
+}
+
+/* Última fila visible (de la página actual): sin borde inferior, y esquinas
+   redondeadas en la primera/última celda para calzar con el radio de .card. */
+.tdLastRow {
+  border-bottom: none;
+}
+
+.tdLastRowFirst {
+  border-bottom-left-radius: 24px;                  /* zafiro.border-radius.br-5 — igual que .card */
+}
+
+.tdLastRowLast {
+  border-bottom-right-radius: 24px;                 /* zafiro.border-radius.br-5 — igual que .card */
+}
+
+.tdCheckbox {
+  text-align: center;
+  padding: 12px 16px;
+  width: 56px;
+}
+
+/* Celda avatar + texto */
+.tdAvatarText {
+  padding-left: 8px;
+  padding-right: 8px;
+  width: 180px;
+}
+
+.cellAvatarInner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.cellAvatarInner span {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: block;
+}
+
+/* Celda texto genérica — una sola línea con elipsis, para que las filas
+   mantengan su alto de 48px aunque el contenido sea largo (ej. cargos/áreas). */
+.tdText {
+  padding-left: 24px;                               /* zafiro.padding.p-5 */
+  padding-right: 8px;
+  width: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Celda link (texto clicable, con avatar opcional) */
+.tdLink {
+  padding-left: 24px;                               /* zafiro.padding.p-5 */
+  padding-right: 8px;
+  width: 100px;
+}
+
+.tdLinkAvatar {
+  width: 150px;
+}
+
+/* Fila que contiene el link + la pill de acción opcional (col.actionLabel) */
+.linkCellRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+}
+
+.linkCell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #00B4FF;                                   /* colors.importante */
+  text-align: left;
+}
+
+.linkCell span {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.linkCell:hover {
+  text-decoration: underline;
+}
+
+.linkActionBtn {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Celda métrica (valor numérico destacado, no interactivo) */
+.tdMetric {
+  padding-left: 24px;                               /* zafiro.padding.p-5 */
+  padding-right: 8px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 16px;                                  /* typography.font-size.16 */
+  color: #0069FF;                                   /* colors.intermedio */
+  white-space: nowrap;
+}
+
+/* Celda icono check */
+.tdIcon {
+  width: 247px;
+  padding: 12px 8px;
+}
+
+.checkIcon {
+  color: #1E5591;                                   /* colors.primario */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Celda progreso */
+.tdProgress {
+  width: 247px;
+  padding: 20px 8px;
+}
+
+.progressCell {
+  display: flex;
+  align-items: center;
+  gap: 8px;                                         /* zafiro.margin.m-3 */
+}
+
+.progressBar {
+  width: 103px;
+  height: 8px;
+  border-radius: 8px;
+  background-color: #E5E5E5;                        /* colors.gris-secundario */
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 8px;
+  background-color: #6DD400;                        /* colors.progress-fill */
+  transition: width 0.2s ease;
+}
+
+.progressValue {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  color: #333333;                                   /* colors.negro-textos */
+}
+
+/* Celda badge (usa el componente Badge) */
+.tdBadge {
+  width: 183px;
+  text-align: center;
+}
+
+/* Celda acciones */
+.tdActions {
+  width: 56px;
+  text-align: center;
+  padding: 12px 16px;
+}
+
+.moreBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #00B4FF;                                   /* colors.importante */
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.moreBtn:hover {
+  color: #019BE5;
+}
+
+/* Checkbox nativo estilizado */
+.checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #1E5591;                            /* colors.primario */
+}
+
+/* ─── Paginador ───────────────────────────────────────────────────────────── */
+.paginator {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 64px;
+  padding: 12px 24px;                               /* zafiro.padding.p-5 */
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.paginatorTotal {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #999999;                                   /* colors.gris-textos */
+  white-space: nowrap;
+}
+
+.paginatorControls {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.rowsPerPage {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rowsPerPageLabel {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;                                  /* typography.font-size.16 */
+  font-weight: 400;
+  color: #333333;                                   /* colors.negro-textos */
+}
+
+.rowsPerPageSelect {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: #333333;                                   /* colors.negro-textos */
+  cursor: pointer;
+  padding: 2px 4px;
+}
+
+.paginatorPages {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pageBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;                                  /* typography.font-size.16 */
+  font-weight: 400;
+  line-height: 1.3;
+  background: transparent;
+  color: #000000;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.pageBtn.active {
+  background-color: #00B4FF;                        /* colors.importante */
+  color: #FFFFFF;                                   /* colors.blanco */
+}
+
+.pageBtn:hover:not(.active) {
+  background-color: #F6F9FA;
+}
+
+.pageEllipsis {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333333;                                   /* colors.negro-textos */
+  font-size: 16px;
+}
+
+.paginatorNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333333;
+  padding: 5px 8px;
+}
+
+.paginatorNav:disabled {
+  color: #CCCCCC;                                   /* colors.gris-deshabilitado */
+  cursor: default;
+}

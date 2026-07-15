@@ -1,0 +1,117 @@
+/*
+ * GraficoBarrasAgrupado — Zafiro Design System (Rex+)
+ * Fuente: Figma nodo 921:8393.
+ *
+ * Tokens usados (src/tokens/tokens.json):
+ *   colors.gris-secundario → #E5E5E5 (aprox. #D6D6D6 en el diseño) — líneas de referencia
+ *   colors.gris-oscuro     → #666666  etiquetas de eje y de grupo
+ *
+ * Los colores de las series (barras/leyenda) se reciben vía props y deben
+ * mapearse a tokens.colors.* desde el consumidor del componente.
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;                                  /* zafiro.margin.m-4 */
+  width: 100%;
+}
+
+.plotArea {
+  position: relative;
+  width: 100%;
+  padding-left: 32px;
+  box-sizing: border-box;
+}
+
+.gridline {
+  position: absolute;
+  left: 32px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateY(50%);
+}
+
+.gridlineLabel {
+  position: absolute;
+  left: -32px;
+  width: 26px;
+  text-align: right;
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+  color: #666666;                             /* colors.gris-oscuro */
+}
+
+.gridlineRule {
+  flex: 1 0 0;
+  height: 1px;
+  background-color: #D6D6D6;
+}
+
+.groups {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: 24px;
+  width: 100%;
+  height: 100%;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
+  height: 100%;
+}
+
+.bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 6px;
+  flex: 1 0 0;
+  width: 100%;
+}
+
+.bar {
+  width: 28px;
+  border-radius: 2px 2px 0 0;
+  transition: height 0.2s ease;
+}
+
+.groupLabel {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  color: #666666;                             /* colors.gris-oscuro */
+  white-space: nowrap;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 16px;                                  /* zafiro.margin.m-4 */
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legendSwatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 100px;
+  flex-shrink: 0;
+}
+
+.legendLabel {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  color: #666666;                             /* colors.gris-oscuro */
+}

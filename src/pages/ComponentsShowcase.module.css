@@ -1,0 +1,301 @@
+/*
+ * ComponentsShowcase — página de preview del sistema Zafiro
+ * Tokens usados:
+ *   colors.fondo           → #F6F9FA  fondo de página
+ *   colors.blanco          → #FFFFFF  fondo de secciones
+ *   colors.primario        → #1E5591  títulos de sección
+ *   colors.primario-oscuro → #0A396C  título header
+ *   colors.gris-secundario → #E5E5E5  bordes separadores
+ *   colors.gris-textos     → #999999  etiquetas de grupos
+ *   colors.negro-textos    → #333333  texto general
+ *   colors.panel           → #5780AD  sub-header
+ */
+
+/* ─── Página ─────────────────────────────────────────────────────────────── */
+.page {
+  min-height: 100vh;
+  background-color: #F6F9FA;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ─── Header ─────────────────────────────────────────────────────────────── */
+.header {
+  background-color: #0A396C;
+  padding: 24px 0;
+}
+
+.headerInner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.headerTitle {
+  margin: 0;
+  font-family: 'Montserrat', 'Roboto', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+}
+
+.headerSub {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #B6CEE7;
+}
+
+.headerBadges {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ─── Main ───────────────────────────────────────────────────────────────── */
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 32px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* ─── Sección ────────────────────────────────────────────────────────────── */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.sectionTitle {
+  margin: 0 0 24px;
+  font-family: 'Montserrat', 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1E5591;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #1E5591;
+  display: inline-block;
+}
+
+/* ─── Grupo ──────────────────────────────────────────────────────────────── */
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 0;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.group:last-child {
+  border-bottom: none;
+}
+
+.groupLabel {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #999999;
+}
+
+.groupItems {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.groupItems.column {
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 400px;
+  gap: 16px;
+}
+
+/* ─── Demo tabla Badges ──────────────────────────────────────────────────── */
+.tableDemo {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #E5E5E5;
+  background-color: #FFFFFF;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  color: #333333;
+  font-family: 'Roboto', sans-serif;
+}
+
+.table thead tr {
+  background-color: #F6F9FA;
+}
+
+.table th {
+  padding: 10px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666666;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid #E5E5E5;
+  vertical-align: middle;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:hover {
+  background-color: #F6F9FA;
+}
+
+/* ─── Demo Cards ─────────────────────────────────────────────────────────── */
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.cardDemoText {
+  margin: 0 0 16px;
+  font-size: 14px;
+  color: #666666;
+  line-height: 1.5;
+}
+
+.cardDemoActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* ─── Demo Snackbar ──────────────────────────────────────────────────────── */
+
+/* Lista vertical de snackbars estáticos */
+.snackbarList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+/* Stack fijo bottom-right para la demo interactiva */
+.snackbarStack {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.snackbarStack > * {
+  pointer-events: all;
+  animation: snackbarSlideIn 0.22s ease;
+}
+
+@keyframes snackbarSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Demo MenuPortal ────────────────────────────────────────────────────── */
+
+/* Barra de controles */
+.menuPortalControls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+}
+
+.menuPortalControlGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.menuPortalControlLabel {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #999999; /* colors.gris-textos */
+  margin-right: 4px;
+}
+
+/* Caja de previsualización interactiva (altura fija, scroll vertical) */
+.menuPortalPreviewBox {
+  width: 100%;
+  height: 480px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1px solid #E5E5E5; /* colors.gris-secundario */
+  border-radius: 8px;
+  background-color: #F6F9FA; /* colors.fondo */
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Grid de las 4 variantes estáticas */
+.menuPortalVariantsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.menuPortalVariantItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* Frame que contiene el componente escalado al 50% */
+.menuPortalScaleFrame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid #E5E5E5; /* colors.gris-secundario */
+  flex-shrink: 0;
+}
+
+/* El componente dentro del frame se escala al 50% desde la esquina superior izquierda */
+.menuPortalScaleInner {
+  transform: scale(0.5);
+  transform-origin: top left;
+  pointer-events: none;
+}
+
+.menuPortalVariantLabel {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #999999; /* colors.gris-textos */
+}

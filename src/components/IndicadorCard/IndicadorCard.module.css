@@ -1,0 +1,94 @@
+/*
+ * IndicadorCard — Zafiro Design System (Rex+)
+ * Fuente: Figma nodo 1053:9536.
+ *
+ * Tokens usados (src/tokens/tokens.json):
+ *   colors.blanco       → #FFFFFF   fondo de la tarjeta
+ *   colors.negro-textos → #333333   título
+ *   colors.primario     → #1E5591   valor principal
+ *   colors.importante   → #00B4FF   link "Ver todos"
+ *   zafiro.border-radius.br-5 → 16px  radio de la tarjeta
+ *   zafiro.padding.p-5        → 24px  padding interno
+ *
+ * Elevación 2: 0px 5px 4px rgba(0,0,0,0.15)
+ */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;                                   /* zafiro.margin.m-3 */
+  flex: 1 0 0;
+  min-width: 150px;
+  padding: 24px;                              /* zafiro.padding.p-5 */
+  background-color: #FFFFFF;                  /* colors.blanco */
+  border-radius: 16px;                        /* zafiro.border-radius.br-5 */
+  box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.15); /* Elevación 2 */
+  box-sizing: border-box;
+}
+
+.title {
+  width: 100%;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #333333;                             /* colors.negro-textos */
+  text-align: center;
+}
+
+/* Variante con ícono: título a la izquierda + ícono a la derecha, en vez de centrado */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+}
+
+.titleLeft {
+  flex: 1 0 0;
+  min-width: 0;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #333333;                             /* colors.negro-textos */
+}
+
+.icon {
+  flex-shrink: 0;
+  display: flex;
+  color: #999999;                             /* colors.gris-textos */
+}
+
+.value {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 42px;
+  color: #1E5591;                             /* colors.primario */
+  text-align: center;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.valueSuffix {
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 2px;
+}
+
+.link {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #00B4FF;                             /* colors.importante */
+}
+
+.link:hover {
+  text-decoration: underline;
+}

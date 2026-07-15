@@ -1,0 +1,300 @@
+/*
+ * Matriz9Box — Zafiro Design System (Rex+)
+ * Fuente: Figma nodo 997:6872.
+ *
+ * Tokens usados (src/tokens/tokens.json):
+ *   colors.blanco       → #FFFFFF   fondo de la tarjeta
+ *   colors.auxiliar     → #B6CEE7   borde del encabezado / eje Y
+ *   colors.primario     → #1E5591   título "Matriz 9-Box" / footer toggle
+ *   colors.negro-textos → #333333   etiquetas de celda
+ *   colors.importante   → #00B4FF   links de acción
+ *   colors.gris-secundario → #E5E5E5  nivel "neutro" (celda sin categorizar)
+ *
+ * Colores de nivel (tiers) — NO son tokens de tokens.json: son fills planos
+ * definidos directamente en el archivo de Figma (no están ligados a ninguna
+ * variable/estilo). Se documentan aquí como constantes propias del componente:
+ *   --tier-critico → #FFBEBD  (rendimiento/potencial bajo)
+ *   --tier-medio   → #FFE8BB  (rango esperado)
+ *   --tier-optimo  → #CFF3BC  (rendimiento/potencial alto)
+ *   --tier-neutro  → #E5E5E5  (colors.gris-secundario — sin categorizar)
+ */
+
+.card {
+  --tier-critico: #FFBEBD;
+  --tier-medio: #FFE8BB;
+  --tier-optimo: #CFF3BC;
+  --tier-neutro: #E5E5E5;                     /* colors.gris-secundario */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;                                  /* zafiro.margin.m-4 */
+  width: 100%;
+  padding: 20px;                              /* zafiro.padding.p-4-5 aprox. */
+  background-color: #FFFFFF;                  /* colors.blanco */
+  border-radius: 8px;                         /* zafiro.border-radius.br-3 */
+  box-sizing: border-box;
+}
+
+/* ─── Encabezado ──────────────────────────────────────────────────────────── */
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #B6CEE7;           /* colors.auxiliar */
+}
+
+.titleFilters {
+  display: flex;
+  align-items: center;
+  gap: 24px;                                  /* zafiro.margin.m-5 */
+}
+
+.title {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  color: #1E5591;                             /* colors.primario */
+}
+
+.searchInput {
+  width: 296px;
+  flex-shrink: 0;
+}
+
+.verTodosButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #00B4FF;                             /* colors.importante */
+}
+
+.verTodosButton:hover {
+  text-decoration: underline;
+}
+
+/* ─── Cuerpo: eje Y + grid ────────────────────────────────────────────────── */
+
+.body {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+.yAxis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;                                   /* zafiro.margin.m-3 */
+  padding: 0 8px 40px;
+  border-right: 1px solid #B6CEE7;            /* colors.auxiliar */
+  flex-shrink: 0;
+}
+
+.yAxisArrow {
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+  color: #1E5591;                             /* colors.primario */
+}
+
+.yAxisLabel {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #1E5591;                             /* colors.primario */
+  white-space: nowrap;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;                                  /* zafiro.margin.m-4 */
+  padding-left: 16px;
+}
+
+.gridRow {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;                                  /* zafiro.margin.m-4 */
+}
+
+.strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.stripLabel {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  color: #333333;                             /* colors.negro-textos */
+  white-space: nowrap;
+}
+
+.spacer {
+  width: 36px;
+  flex-shrink: 0;
+}
+
+.cell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 280px;
+  min-height: 170px;
+  padding: 10.5px;
+  border: 1.5px solid;
+  box-sizing: border-box;
+}
+
+.cellRoundedTR {
+  border-top-right-radius: 6px;
+}
+
+.cellRoundedBR {
+  border-bottom-right-radius: 6px;
+}
+
+.cellHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cellLabel {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #333333;                             /* colors.negro-textos */
+}
+
+.cellCount {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #1E5591;                             /* colors.primario */
+}
+
+.colaboradoresList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 0 0;
+  justify-content: center;
+}
+
+.colaborador {
+  display: flex;
+  align-items: center;
+  gap: 12px;                                  /* zafiro.margin.m-3-5 aprox. */
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 100px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.colaboradorInfo {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.colaboradorName {
+  display: block;
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #666666;                             /* colors.gris-oscuro */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  cursor: pointer;
+}
+
+.colaboradorName:hover {
+  color: #00B4FF;                             /* colors.importante */
+  text-decoration: underline;
+}
+
+.colaboradorRole {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #999999;                             /* colors.gris-textos */
+}
+
+.verParticipantesButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #00B4FF;                             /* colors.importante */
+}
+
+.verParticipantesButton:hover {
+  text-decoration: underline;
+}
+
+.colLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 280px;
+  height: 28px;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  color: #333333;                             /* colors.negro-textos */
+}
+
+/* ─── Footer: toggle de sección relacionada ───────────────────────────────── */
+
+.footerToggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  height: 30px;
+  padding-top: 8px;
+  justify-content: center;
+  border-top: 1px solid #B6CEE7;              /* colors.auxiliar */
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #1E5591;                             /* colors.primario */
+}

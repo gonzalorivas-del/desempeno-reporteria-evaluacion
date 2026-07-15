@@ -1,0 +1,164 @@
+/* Filtro — tokens:
+   colors.fondo              #F6F9FA  → fondo trigger
+   colors.dash               #5780AD  → ícono + texto trigger
+   colors.importante         #00B4FF  → chevron trigger / chevron ítems panel
+   colors.blanco             #FFFFFF  → fondo panel
+   colors.gris-deshabilitado #CCCCCC  → estado disabled
+   colors.negro-textos       #333333  → valor ítem
+   colors.gris-oscuro        #666666  → label ítem
+   zafiro.border-radius.br-4  16px   → trigger + panel
+   effects.elevation-3                → sombra panel
+*/
+
+/* ── Wrapper: ancla del posicionamiento absoluto ───────────────────────────── */
+
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  align-self: flex-start;
+  width: fit-content;
+}
+
+/* ── Trigger (pill compacto) ───────────────────────────────────────────────── */
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 16px;                         /* zafiro.border-radius.br-4 */
+  background-color: #F6F9FA;                   /* colors.fondo */
+  border: none;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  user-select: none;
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.trigger:hover:not(.disabled) {
+  background-color: #EDF2F4;
+}
+
+.triggerOpen {
+  background-color: #FFFFFF;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Label del trigger ─────────────────────────────────────────────────────── */
+
+.triggerLabel {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;                             /* typography.font-size.14 */
+  font-weight: 400;
+  line-height: 22px;
+  color: #5780AD;                              /* colors.dash */
+  white-space: nowrap;
+}
+
+/* ── Panel flotante — cubre el trigger desde top:0 ─────────────────────────── */
+
+.panel {
+  position: absolute;
+  top: 0;                                      /* alineado con el trigger */
+  left: 0;
+  z-index: 200;
+  background: #FFFFFF;                         /* colors.blanco */
+  border-radius: 16px;                         /* zafiro.border-radius.br-4 */
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.15); /* effects.elevation-3 */
+  min-width: 296px;
+  width: fit-content;
+  overflow: hidden;
+}
+
+/* ── Header del panel (replica el trigger, cierra al hacer clic) ───────────── */
+
+.panelHeader {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 8px 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+}
+
+.panelHeader:hover {
+  opacity: 0.8;
+}
+
+.panelHeaderSpacer {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* ── Lista de ítems ─────────────────────────────────────────────────────────── */
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0 16px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.listItem {
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.listItem:last-child {
+  border-bottom: none;
+}
+
+/* ── Ítem individual ────────────────────────────────────────────────────────── */
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+}
+
+.item:hover .itemValue {
+  color: #5780AD;                              /* colors.dash */
+}
+
+.itemContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.itemLabel {
+  font-size: 12px;                             /* typography.font-size.12 */
+  font-weight: 400;
+  color: #666666;                              /* colors.gris-oscuro */
+  line-height: 1.3;
+}
+
+.itemValue {
+  font-size: 16px;                             /* typography.font-size.16 */
+  font-weight: 400;
+  color: #333333;                              /* colors.negro-textos */
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.12s ease;
+}

@@ -1,0 +1,54 @@
+/*
+ * OrganizacionSection — breadcrumb de drill-down (Vista Área/Gerencia)
+ * Fuente: Figma nodo 1038:8435 ("Table" / "Header tabla").
+ *
+ * Tokens usados (src/tokens/tokens.json):
+ *   colors.panel           → #5780AD   segmentos navegables del breadcrumb
+ *   colors.primario-oscuro → #0A396C   segmento actual (último nivel)
+ *   colors.gris-textos     → #999999   separador "/"
+ */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.breadcrumbSegment {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbSeparator {
+  margin: 0 6px;
+  color: #999999;                                   /* colors.gris-textos */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+}
+
+.breadcrumbLink {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #5780AD;                                   /* colors.panel */
+}
+
+.breadcrumbLink:hover {
+  text-decoration: underline;
+}
+
+/* "Organización" cuando es el único segmento (nivel raíz, sin drill-down):
+   mismo estilo visual que el link, pero sin interactividad. */
+.breadcrumbRoot {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #5780AD;                                   /* colors.panel */
+}
+
+.breadcrumbCurrent {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #0A396C;                                   /* colors.primario-oscuro */
+}

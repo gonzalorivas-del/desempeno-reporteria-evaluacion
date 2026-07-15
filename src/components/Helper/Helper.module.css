@@ -1,0 +1,98 @@
+/* Helper — tokens:
+   colors.primario   #1E5591  → fondo del panel
+   colors.auxiliar   #B6CEE7  → título
+   colors.blanco     #FFFFFF  → texto de apoyo
+   colors.exito      #ACCA54  → CTA
+   zafiro.border-radius.br-4  16px → radio
+*/
+
+/* ── Contenedor ─────────────────────────────────────────────────────────────── */
+
+.helper {
+  position: relative;
+  background: #1E5591;           /* primario */
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 292px;
+  box-sizing: border-box;
+}
+
+/* ── Título ──────────────────────────────────────────────────────────────────── */
+
+.title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #B6CEE7;                /* auxiliar */
+  text-align: center;
+  line-height: 1;
+  margin: 0;
+}
+
+/* ── Texto de apoyo ──────────────────────────────────────────────────────────── */
+
+.supporting {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #FFFFFF;                /* blanco */
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* ── CTA ─────────────────────────────────────────────────────────────────────── */
+
+.ctaBtn {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #ACCA54;                /* exito */
+  line-height: 1.3;
+  align-self: flex-end;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-align: right;
+}
+
+.ctaBtn:hover {
+  opacity: 0.8;
+}
+
+/* ── Pointer — cuadrado rotado 45° del mismo color que el fondo ─────────────── */
+
+.pointer {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #1E5591;           /* primario */
+  border-radius: 2px;
+}
+
+.pointer_top {
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.pointer_bottom {
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.pointer_left {
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.pointer_right {
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}

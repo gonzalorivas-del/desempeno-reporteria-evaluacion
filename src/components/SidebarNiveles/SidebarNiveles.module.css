@@ -1,0 +1,60 @@
+/*
+ * SidebarNiveles — Zafiro Design System (Rex+)
+ * Fuente: Figma nodo 664:1253.
+ *
+ * Tokens usados (src/tokens/tokens.json):
+ *   colors.panel      → #5780AD  título de grupo ("Niveles", "Áreas / Gerencias")
+ *   colors.importante → #00B4FF  ítem activo
+ *   colors.gris-oscuro → #666666 ítem inactivo
+ *   zafiro.margin.m-3  → 8px     separación entre ítems
+ *   zafiro.margin.m-8  → 32px    separación entre grupos
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;                                  /* zafiro.margin.m-8 */
+  width: 161px;
+  flex-shrink: 0;
+  padding: 0 12px 12px;
+  box-sizing: border-box;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;                                   /* zafiro.margin.m-3 */
+  width: 100%;
+}
+
+.groupTitle {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #5780AD;                             /* colors.panel */
+  margin: 0;
+  width: 100%;
+}
+
+.item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #666666;                             /* colors.gris-oscuro */
+  padding: 2px 0;
+  border-radius: 4px;
+}
+
+.item:hover {
+  color: #0A396C;                             /* colors.primario-oscuro */
+}
+
+.itemActive {
+  color: #00B4FF;                             /* colors.importante */
+  font-weight: 500;
+}

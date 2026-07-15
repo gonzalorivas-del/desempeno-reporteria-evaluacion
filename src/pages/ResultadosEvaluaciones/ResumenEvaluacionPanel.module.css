@@ -1,0 +1,123 @@
+/*
+ * ResumenEvaluacionPanel — Vista Colaborador (Rex+ Desempeño)
+ * Fuente: Figma nodo 869:12742.
+ *
+ * Tokens usados (src/tokens/tokens.json):
+ *   colors.blanco          → #FFFFFF   fondo de la tarjeta
+ *   colors.panel           → #5780AD   título de sección
+ *   colors.negro-textos    → #333333   subtítulo · label de fila · tick
+ *   colors.gris-textos     → #999999   texto de ponderación
+ *   colors.primario-oscuro → #0A396C   valor %
+ *   colors.auxiliar        → #B6CEE7   línea divisora
+ *   colors.gris-secundario → #E5E5E5   track de la barra
+ *   colors.intermedio      → #0069FF   relleno de la barra
+ *   zafiro.border-radius.br-5 → 16px   radio de la tarjeta
+ */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;                                    /* zafiro.margin.m-2/m-3 */
+  width: 100%;
+  padding: 16px 24px;                           /* zafiro.padding.p-4/p-5 */
+  background-color: #FFFFFF;                    /* colors.blanco */
+  border-radius: 16px;                          /* zafiro.border-radius.br-5 */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.title {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #5780AD;                               /* colors.panel */
+}
+
+.subtitle {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #333333;                               /* colors.negro-textos */
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: #E5E5E5;                    /* colors.gris-secundario */
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.rowHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.rowLabel {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  color: #333333;                               /* colors.negro-textos */
+  white-space: nowrap;
+}
+
+.rowMetaGroup {
+  display: flex;
+  align-items: center;
+  gap: 16px;                                    /* zafiro.margin.m-4 */
+}
+
+.rowPonderacion {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  color: #999999;                               /* colors.gris-textos */
+  white-space: nowrap;
+}
+
+.rowValor {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #0A396C;                               /* colors.primario-oscuro */
+  white-space: nowrap;
+}
+
+.track {
+  position: relative;
+  width: 100%;
+  height: 12px;
+  border-radius: 2px;
+  background-color: #E5E5E5;                    /* colors.gris-secundario */
+  overflow: visible;
+}
+
+.fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  height: 100%;
+  border-radius: 2px;
+  background-color: #0069FF;                    /* colors.intermedio */
+  transition: width 0.2s ease;
+}
+
+.tick {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  background-color: #FFFFFF;                    /* colors.blanco */
+  transform: translateX(-1px);
+}

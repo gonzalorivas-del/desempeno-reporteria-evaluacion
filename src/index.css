@@ -1,0 +1,30 @@
+:root {
+  font-family: 'Roboto', system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #333333;
+  background-color: #F6F9FA;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* Reset global de <button> para no interferir con CSS Modules */
+button {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+}

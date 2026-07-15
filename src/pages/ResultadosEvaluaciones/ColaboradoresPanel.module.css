@@ -1,0 +1,46 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;                                        /* zafiro.margin.m-4 */
+}
+
+.subtitle {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #666666;                                   /* colors.gris-oscuro */
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.filterWrapper {
+  position: relative;
+}
+
+.filterPanel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 20;
+}
+
+.downloadLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;                                         /* zafiro.margin.m-3 */
+  flex-shrink: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #00B4FF;                                   /* colors.importante */
+}
+
+.downloadLink:hover {
+  text-decoration: underline;
+}

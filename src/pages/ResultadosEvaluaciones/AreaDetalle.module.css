@@ -1,0 +1,62 @@
+/*
+ * AreaDetalle — Vista Área/Gerencia (Rex+ Desempeño)
+ * Fuente: Figma nodo 869:9702.
+ *
+ * Tokens usados (src/tokens/tokens.json):
+ *   colors.primario-oscuro → #0A396C   título
+ *   colors.panel           → #5780AD   subtítulo
+ *   colors.importante      → #00B4FF   link exportar
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;                                   /* zafiro.margin.m-5 */
+  width: 100%;
+}
+
+.titleRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: #0A396C;                              /* colors.primario-oscuro */
+}
+
+.subtitle {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.3;
+  color: #5780AD;                              /* colors.panel */
+}
+
+.exportLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;                                    /* zafiro.margin.m-3 */
+  flex-shrink: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #00B4FF;                              /* colors.importante */
+}
+
+.exportLink:hover {
+  text-decoration: underline;
+}

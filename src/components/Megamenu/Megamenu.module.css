@@ -1,0 +1,224 @@
+/*
+ * Megamenu — Zafiro Design System (Rex+)
+ * Fuente: Figma nodo 664:1240.
+ *
+ * Tokens usados (src/tokens/tokens.json):
+ *   colors.primario          → #1E5591   fondo barra de categoría / badge "Nuevo proceso"
+ *   colors.primario-oscuro   → #0A396C   texto de navegación (subcategoría)
+ *   colors.fondo             → #F6F9FA   fondo barra de subcategoría
+ *   colors.auxiliar          → #B6CEE7   texto tenant / buscador / avatar bg
+ *   colors.intermedio        → #0069FF   fondo botón simulador
+ *   colors.alerta            → #FFB800   badge de notificaciones
+ *   colors.importante        → #00B4FF   acento ítem activo
+ *   colors.blanco            → #FFFFFF   texto/íconos sobre fondo primario
+ *   zafiro.border-radius.br-4 → 16px     pill "Nuevo proceso"
+ *
+ * Elevación 1: 0px 2px 2px rgba(0,0,0,0.15) — sombra bajo la subcategoría
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ─── Fila 1 — categoría de plataforma ───────────────────────────────────── */
+
+.categoryBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;                                  /* zafiro.margin.m-5 aprox. */
+  height: 48px;
+  padding: 0 60px;                            /* zafiro.padding.p-8 aprox. */
+  background-color: #1E5591;                  /* colors.primario */
+  color: #FFFFFF;                             /* colors.blanco */
+  box-sizing: border-box;
+}
+
+.platformSearch {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 32px;
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.navPlatform {
+  display: flex;
+  align-items: center;
+  gap: 16px;                                  /* zafiro.margin.m-4 */
+  flex-shrink: 0;
+}
+
+.iconButton {
+  display: flex;
+  color: #FFFFFF;
+}
+
+.divider {
+  width: 1px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.logoGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;                                   /* zafiro.margin.m-3 */
+}
+
+.logoMark {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #00B4FF 0%, #0069FF 100%); /* colors.importante → colors.intermedio */
+}
+
+.logoText {
+  font-weight: 600;
+  font-size: 15px;
+  color: #FFFFFF;                             /* colors.blanco */
+  white-space: nowrap;
+}
+
+.searchButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background: transparent;
+  color: #B6CEE7;                             /* colors.auxiliar */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.tenantBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #B6CEE7;                             /* colors.auxiliar */
+  font-size: 14px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.simulatorButton {
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 5px;
+  background-color: #0069FF;                  /* colors.intermedio */
+  color: #FFFFFF;
+  flex-shrink: 0;
+}
+
+.userGroup {
+  display: flex;
+  align-items: center;
+  gap: 24px;                                  /* zafiro.margin.m-5 */
+  flex-shrink: 0;
+}
+
+.notificationButton {
+  position: relative;
+  display: flex;
+  color: #FFFFFF;
+}
+
+.notificationBadge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 3px;
+  border-radius: 50px;
+  border: 2px solid #1E5591;                  /* colors.primario */
+  background-color: #FFB800;                  /* colors.alerta */
+  color: #1E5591;                             /* colors.primario */
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.avatarButton {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #FFFFFF;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 100px;
+  background-color: #B6CEE7;                  /* colors.auxiliar */
+  color: #1E5591;                             /* colors.primario */
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ─── Fila 2 — subcategoría / navegación de sección ──────────────────────── */
+
+.subCategoryBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 57px 8px 60px;
+  background-color: #F6F9FA;                  /* colors.fondo */
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15); /* Elevación 1 */
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 16px;                                  /* zafiro.margin.m-4 */
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  color: #0A396C;                             /* colors.primario-oscuro */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+}
+
+.navItemActive {
+  border-bottom-color: #00B4FF;                /* colors.importante */
+}
+
+.newProcessBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 24px;
+  padding: 4px 11px 4px 16px;
+  border-radius: 16px;                        /* zafiro.border-radius.br-4 */
+  background-color: #1E5591;                  /* colors.primario */
+  color: #FFFFFF;                             /* colors.blanco */
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.settingsButton {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  color: #0A396C;                             /* colors.primario-oscuro */
+}

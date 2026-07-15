@@ -1,0 +1,65 @@
+/*
+ * GraficoArania — Zafiro Design System (Rex+)
+ * Fuente: Figma nodo 869:11817.
+ *
+ * Tokens usados (src/tokens/tokens.json):
+ *   colors.auxiliar    → #B6CEE7   grillas y ejes
+ *   colors.gris-oscuro → #666666   etiquetas de eje y leyenda
+ *   colors.intermedio  → #0069FF   serie "Valor Logrado" (uso típico, definido por consumidor)
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.svg {
+  overflow: visible;
+  max-width: 100%;
+}
+
+.grid {
+  fill: none;
+  stroke: #B6CEE7;                                  /* colors.auxiliar */
+  stroke-width: 1;
+}
+
+.axisLine {
+  stroke: #B6CEE7;                                  /* colors.auxiliar */
+  stroke-width: 1;
+}
+
+.axisLabel {
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+  fill: #666666;                                    /* colors.gris-oscuro */
+}
+
+.legend {
+  display: flex;
+  gap: 16px;                                         /* zafiro.margin.m-4 */
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legendSwatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legendLabel {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  color: #666666;                                   /* colors.gris-oscuro */
+}

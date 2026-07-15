@@ -1,0 +1,79 @@
+/*
+ * Modal (variante Side-panel) — Zafiro Design System (Rex+)
+ *
+ * Tokens usados (src/tokens/tokens.json):
+ *   colors.blanco   → #FFFFFF  (fondo del panel · scrim)
+ *   colors.panel    → #5780AD  (título de la cabecera)
+ *   colors.importante → #00B4FF (ícono cerrar)
+ *
+ * El scrim es blanco con 32% de opacidad (no negro/oscuro): así lo define
+ * el frame de origen (Figma nodo 976:4832 "Scrim"), a diferencia del overlay
+ * oscuro (colors.negro-8, 40%) documentado para el resto de variantes de Modal.
+ */
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  background-color: #FFFFFF;         /* colors.blanco */
+  opacity: 0.32;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+.panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(1089px, 94vw);
+  background-color: #FFFFFF;         /* colors.blanco */
+  box-shadow: -8px 0px 24px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  animation: slideInRight 0.25s ease;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 24px 0;
+  flex-shrink: 0;
+}
+
+.title {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  color: #5780AD;                     /* colors.panel */
+}
+
+.closeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #00B4FF;                     /* colors.importante */
+}
+
+.body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 0.32; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}

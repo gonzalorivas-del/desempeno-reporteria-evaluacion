@@ -1,0 +1,184 @@
+/*
+ * ColaboradorHeaderCard — Vista Colaborador (Rex+ Desempeño)
+ * Fuente: Figma nodo 869:12668.
+ *
+ * Tokens usados (src/tokens/tokens.json):
+ *   colors.blanco           → #FFFFFF   fondo de la tarjeta · fondo ScoreCircle
+ *   colors.auxiliar         → #B6CEE7   fondo avatar · divisor vertical
+ *   colors.primario         → #1E5591   texto iniciales del avatar
+ *   colors.primario-oscuro  → #0A396C   nombre
+ *   colors.panel            → #5780AD   cargo
+ *   colors.negro-textos     → #333333   valores de metadatos
+ *   colors.gris-textos      → #999999   labels de metadatos
+ *   colors.intermedio       → #0069FF   valores de stats · borde y texto ScoreCircle
+ *   colors.gris-oscuro      → #666666   sufijo "/100"
+ *   zafiro.border-radius.br-5 → 16px    radio de la tarjeta
+ */
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;                                    /* zafiro.margin.m-5 */
+  width: 100%;
+  padding: 20px 24px;
+  background-color: #FFFFFF;                    /* colors.blanco */
+  border-radius: 16px;                          /* zafiro.border-radius.br-5 */
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 24px;                                    /* zafiro.margin.m-5 */
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #B6CEE7;                    /* colors.auxiliar */
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  color: #1E5591;                               /* colors.primario */
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;                                     /* zafiro.margin.m-3 */
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nombre {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  color: #0A396C;                               /* colors.primario-oscuro */
+}
+
+.cargo {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #5780AD;                               /* colors.panel */
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;                                    /* zafiro.margin.m-4 */
+  flex-wrap: wrap;
+}
+
+.meta p {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #333333;                               /* colors.negro-textos */
+  white-space: nowrap;
+}
+
+.metaLabel {
+  color: #999999;                               /* colors.gris-textos */
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 16px;                                    /* zafiro.margin.m-4 */
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.statLabel {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #999999;                               /* colors.gris-textos */
+  white-space: nowrap;
+}
+
+.statValue {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: #0069FF;                               /* colors.intermedio */
+  white-space: nowrap;
+}
+
+.statDivider {
+  width: 1px;
+  height: 32px;
+  background-color: #B6CEE7;                    /* colors.auxiliar */
+  flex-shrink: 0;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;                                     /* zafiro.margin.m-3 */
+  flex-shrink: 0;
+}
+
+.scoreCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #FFFFFF;                    /* colors.blanco */
+  border: 3px solid #0069FF;                    /* colors.intermedio */
+  box-sizing: border-box;
+}
+
+.scoreValue {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 1;
+  color: #0069FF;                               /* colors.intermedio */
+}
+
+.scoreSuffix {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  color: #666666;                               /* colors.gris-oscuro */
+}
+
+.scoreCaption {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: #0069FF;                               /* colors.intermedio */
+  text-align: center;
+  white-space: nowrap;
+}

@@ -1,0 +1,154 @@
+/*
+ * ResultadosEvaluaciones — Vista Empresa (Rex+ Desempeño)
+ * Fuente: Figma nodo 664:1239.
+ *
+ * Tokens usados (src/tokens/tokens.json):
+ *   colors.fondo            → #F6F9FA   fondo de página
+ *   colors.blanco           → #FFFFFF   fondo del dashboard-content
+ *   colors.gris-secundario  → #E5E5E5   separador de controles
+ *   colors.gris-textos      → #999999   texto de placeholders (temporal, Fase 1)
+ *   zafiro.border-radius.br-5 → 16px    radio del dashboard-content
+ *   zafiro.padding.p-6        → 32px    padding horizontal del dashboard-content
+ *   zafiro.padding.p-5        → 24px    padding vertical del dashboard-content / gap de secciones
+ *
+ * Elevación 1: 0px 2px 2px rgba(0,0,0,0.15) — sombra del dashboard-content y megamenu
+ */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;                                  /* zafiro.margin.m-5 */
+  width: 100%;
+  min-height: 100vh;
+  background-color: #F6F9FA;                  /* colors.fondo */
+}
+
+.breadcrumbWrap {
+  width: 1320px;
+}
+
+/* ─── Controles (Fase 3) ─────────────────────────────────────────────────── */
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 24px;                                  /* zafiro.margin.m-5 */
+  width: 100%;
+  padding: 0 16px 0 16px;
+}
+
+.controlsSelector {
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.controlsCheckbox {
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+/* ─── Content area ───────────────────────────────────────────────────────── */
+
+.contentArea {
+  display: flex;
+  justify-content: center;
+  width: 1320px;
+  padding-bottom: 32px;                        /* zafiro.padding.p-6 */
+}
+
+.dashboardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;                                   /* zafiro.margin.m-5 */
+  flex: 1 0 0;
+  min-width: 0;
+  background-color: #FFFFFF;                   /* colors.blanco */
+  border-radius: 16px;                         /* zafiro.border-radius.br-5 */
+  padding: 24px 32px;                          /* zafiro.padding.p-5 / p-6 */
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15); /* Elevación 1 */
+  box-sizing: border-box;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #E5E5E5;                   /* colors.gris-secundario */
+}
+
+.body {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;                                   /* zafiro.margin.m-4 */
+  width: 100%;
+}
+
+.sidebar {
+  align-self: stretch;
+}
+
+.indicadores {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;                                   /* zafiro.margin.m-5 */
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+/* ─── Título del dashboard (Fase 4) ──────────────────────────────────────── */
+
+.dashboardTitleRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.dashboardTitleGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboardTitle {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: #0A396C;                              /* colors.primario-oscuro */
+}
+
+.dashboardSubtitle {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.3;
+  color: #5780AD;                              /* colors.panel */
+}
+
+.downloadLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;                                    /* zafiro.margin.m-3 */
+  flex-shrink: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #00B4FF;                              /* colors.importante */
+}
+
+.downloadLink:hover {
+  text-decoration: underline;
+}
+
+.kpiRow {
+  display: flex;
+  gap: 16px;                                   /* zafiro.margin.m-4 */
+  align-items: stretch;
+  width: 100%;
+  padding: 0 8px 12px;
+  box-sizing: border-box;
+}
+

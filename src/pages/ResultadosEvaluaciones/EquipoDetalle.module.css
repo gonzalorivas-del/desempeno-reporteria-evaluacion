@@ -1,0 +1,80 @@
+/*
+ * EquipoDetalle — Vista Equipo (Rex+ Desempeño)
+ * Fuente: Figma nodo 869:11774.
+ *
+ * Tokens usados (src/tokens/tokens.json):
+ *   colors.primario-oscuro → #0A396C   título
+ *   colors.panel           → #5780AD   subtítulo
+ *   colors.importante      → #00B4FF   link exportar
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;                                   /* zafiro.margin.m-5 */
+  width: 100%;
+}
+
+.titleRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: #0A396C;                              /* colors.primario-oscuro */
+}
+
+.subtitle {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #5780AD;                              /* colors.panel */
+}
+
+.exportLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;                                    /* zafiro.margin.m-3 */
+  flex-shrink: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #00B4FF;                              /* colors.importante */
+}
+
+.exportLink:hover {
+  text-decoration: underline;
+}
+
+.kpiRow {
+  display: flex;
+  gap: 16px;                                   /* zafiro.margin.m-4 */
+  align-items: stretch;
+  width: 100%;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.chartRow {
+  display: flex;
+  gap: 24px;                                   /* zafiro.margin.m-5 */
+  align-items: stretch;
+  width: 100%;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
