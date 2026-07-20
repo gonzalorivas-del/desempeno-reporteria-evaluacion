@@ -13,6 +13,7 @@ import { DireccionesEvaluacionSection } from './DireccionesEvaluacionSection';
 import { ColaboradoresPanel } from './ColaboradoresPanel';
 import { findColaboradorRowByName, toColaboradorEquipoRow } from './colaboradoresMockData';
 import { AreaDetalle } from './AreaDetalle';
+import { getEquiposRaiz } from './areaData';
 import { EquipoDetalle } from './EquipoDetalle';
 import type { OrganizacionNode } from './OrganizacionSection';
 import { ColaboradorDetalle } from './ColaboradorDetalle';
@@ -51,6 +52,14 @@ function IconDownload() {
   );
 }
 
+// "Comercial" → "Equipo Comercial", pero "Depto. X" / "Equipo X" (niveles más
+// profundos del árbol de Organización) ya traen su propio prefijo y se
+// muestran tal cual — mismo criterio que buildTitle() en EquipoDetalle.tsx.
+function sidebarEquipoLabel(jefatura: string): string {
+  if (jefatura.startsWith('Equipo ') || jefatura.startsWith('Depto.')) return jefatura;
+  return `Equipo ${jefatura}`;
+}
+
 /**
  * Vista Empresa — Resultados de Evaluaciones (Rex+ Desempeño).
  * Fuente: Figma nodo 664:1239.
@@ -60,15 +69,41 @@ export function ResultadosEvaluaciones() {
   const [proceso, setProceso] = useState('2025');
   const [comparar, setComparar] = useState(false);
   const [colaboradoresModal, setColaboradoresModal] = useState<{ title: string; filterNames?: string[] } | null>(null);
+  const [selectedNivel, setSelectedNivel] = useState('Vista Empresa');
   const [selectedArea, setSelectedArea] = useState<string | null>(null);
   const [selectedEquipo, setSelectedEquipo] = useState<OrganizacionNode | null>(null);
   const [selectedColaborador, setSelectedColaborador] = useState<ColaboradorEquipoRow | null>(null);
+  // Espeja el drill-down de la tabla "Organización" (Vista Área) — el sidebar
+  // lista los equipos del nivel actual, no siempre los de la raíz.
+  const [organizacionPath, setOrganizacionPath] = useState<OrganizacionNode[]>([]);
 
   const niveles = NIVEL_LABELS.map((label) => ({
     label,
-    active: !selectedArea && label === 'Vista Empresa',
+    active: selectedNivel === label,
   }));
-  const areas = AREA_LABELS.map((label) => ({ label, active: label === selectedArea }));
+
+  // Solo el área activa despliega equipos, y lista el mismo nivel de
+  // drill-down que la tabla "Organización" tenga en ese momento (raíz por
+  // defecto, o el nivel al que se haya navegado dentro de esa tabla) — las
+  // demás áreas no muestran ninguno hasta que se les hace clic.
+  const areas = AREA_LABELS.map((label) => {
+    const isAreaActiva = selectedArea === label;
+    const equiposVisibles = isAreaActiva
+      ? organizacionPath.length === 0
+        ? getEquiposRaiz(label)
+        : organizacionPath[organizacionPath.length - 1].children ?? []
+      : [];
+    return {
+      label,
+      active: isAreaActiva && !selectedEquipo && !selectedColaborador,
+      expanded: isAreaActiva,
+      equipos: equiposVisibles.map((node) => ({
+        label: sidebarEquipoLabel(node.jefatura),
+        active: isAreaActiva && selectedEquipo === node && !selectedColaborador,
+        colaboradorAnidado: isAreaActiva && selectedEquipo === node && !!selectedColaborador,
+      })),
+    };
+  });
 
   return (
     <div className={styles.page}>
@@ -82,6 +117,7 @@ export function ResultadosEvaluaciones() {
             if (selectedColaborador) setSelectedColaborador(null);
             else if (selectedEquipo) setSelectedEquipo(null);
             else if (selectedArea) setSelectedArea(null);
+            else if (selectedNivel !== 'Vista Empresa') setSelectedNivel('Vista Empresa');
             else window.history.back();
           }}
         />
@@ -120,23 +156,47 @@ export function ResultadosEvaluaciones() {
             <SidebarNiveles
               niveles={niveles}
               areas={areas}
+              colaboradorActivo={selectedColaborador?.nombre}
               onSelectNivel={(label) => {
-                if (label === 'Vista Empresa') {
-                  setSelectedArea(null);
-                  setSelectedEquipo(null);
-                  setSelectedColaborador(null);
-                }
+                setSelectedNivel(label);
+                setSelectedArea(null);
+                setSelectedEquipo(null);
+                setSelectedColaborador(null);
               }}
               onSelectArea={(label) => {
+                setSelectedNivel('Vista Empresa');
                 setSelectedArea(label);
                 setSelectedEquipo(null);
+                setSelectedColaborador(null);
+              }}
+              onSelectEquipo={(areaLabel, equipoLabel) => {
+                const nivelActual =
+                  organizacionPath.length === 0
+                    ? getEquiposRaiz(areaLabel)
+                    : organizacionPath[organizacionPath.length - 1].children ?? [];
+                const node = nivelActual.find((n) => sidebarEquipoLabel(n.jefatura) === equipoLabel);
+                if (!node) return;
+                setSelectedNivel('Vista Empresa');
+                setSelectedArea(areaLabel);
+                setSelectedEquipo(node);
                 setSelectedColaborador(null);
               }}
               className={styles.sidebar}
             />
 
             <div className={styles.indicadores}>
-              {selectedColaborador ? (
+              {selectedNivel === 'Resultados Históricos' ? (
+                <>
+                  <div className={styles.dashboardTitleRow}>
+                    <div className={styles.dashboardTitleGroup}>
+                      <h2 className={styles.dashboardTitle}>Resultados Históricos</h2>
+                    </div>
+                  </div>
+                  <div className={styles.placeholder}>
+                    <p>Contenido no disponible en este prototipo.</p>
+                  </div>
+                </>
+              ) : selectedColaborador ? (
                 <ColaboradorDetalle row={selectedColaborador} />
               ) : selectedEquipo ? (
                 <EquipoDetalle node={selectedEquipo} onSelectColaborador={setSelectedColaborador} />
@@ -147,6 +207,7 @@ export function ResultadosEvaluaciones() {
                     setSelectedEquipo(node);
                     setSelectedColaborador(null);
                   }}
+                  onOrganizacionPathChange={setOrganizacionPath}
                 />
               ) : (
                 <>

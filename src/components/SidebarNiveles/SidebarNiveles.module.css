@@ -1,13 +1,14 @@
 /*
  * SidebarNiveles — Zafiro Design System (Rex+)
- * Fuente: Figma nodo 664:1253.
+ * Fuente: Figma nodo 664:1253 ("Sidebar") y 1141:6827 (área activa, ejemplo Comercial).
  *
  * Tokens usados (src/tokens/tokens.json):
- *   colors.panel      → #5780AD  título de grupo ("Niveles", "Áreas / Gerencias")
- *   colors.importante → #00B4FF  ítem activo
- *   colors.gris-oscuro → #666666 ítem inactivo
- *   zafiro.margin.m-3  → 8px     separación entre ítems
- *   zafiro.margin.m-8  → 32px    separación entre grupos
+ *   colors.panel              → #5780AD  título de grupo ("Niveles", "Áreas / Gerencias")
+ *   colors.importante-oscuro  → #019BE5  ítem activo (todos los niveles)
+ *   colors.importante         → #00B4FF  chevron de área, siempre este color (activo o no)
+ *   colors.gris-oscuro        → #666666  ítem inactivo
+ *   zafiro.margin.m-3         → 8px      separación entre ítems / indentación de equipo
+ *   zafiro.margin.m-8         → 32px     separación entre grupos
  */
 
 .root {
@@ -54,7 +55,110 @@
   color: #0A396C;                             /* colors.primario-oscuro */
 }
 
+.areaBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;                                   /* zafiro.margin.m-3 — entre el área y cada equipo, y entre equipos */
+  width: 100%;
+}
+
+.areaItem {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;                           /* medium — nivel "Área" siempre es medium, activo o no */
+  font-size: 14px;
+  line-height: 20px;
+  color: #666666;                             /* colors.gris-oscuro */
+  padding: 2px 0;
+  border-radius: 4px;
+}
+
+.areaItem:hover {
+  color: #0A396C;                             /* colors.primario-oscuro */
+}
+
+.areaLabel {
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.areaChevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: #00B4FF;                             /* colors.importante — siempre este color, activo o no */
+}
+
+.equipoBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;                                   /* zafiro.margin.m-3 — entre el equipo y su colaborador anidado */
+  width: 100%;
+  padding-left: 8px;                          /* pl-[8px] del nodo Figma "lel2" */
+}
+
+.equipoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  width: 100%;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #666666;                             /* colors.gris-oscuro */
+  padding: 2px 0;
+  border-radius: 4px;
+}
+
+.equipoItem:hover {
+  color: #0A396C;                             /* colors.primario-oscuro */
+}
+
+.equipoLabelText {
+  display: -webkit-box;
+  flex: 1 0 0;
+  min-width: 0;
+  white-space: normal;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;                      /* máx. 2 líneas — más allá, truncar con "…" */
+  -webkit-box-orient: vertical;
+}
+
+.dot {
+  flex-shrink: 0;
+  width: 4px;
+  height: 4px;
+  margin-top: 8px;                            /* centra el punto en la primera línea (line-height 20px) */
+  border-radius: 50%;
+  background-color: currentColor;             /* sigue el color del propio ítem (default o activo) */
+}
+
+.colaboradorItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  width: 100%;
+  margin: 0;
+  padding: 2px 0 2px 8px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #019BE5;                             /* colors.importante-oscuro — 3er nivel, siempre activo */
+}
+
 .itemActive {
-  color: #00B4FF;                             /* colors.importante */
-  font-weight: 500;
+  color: #019BE5;                             /* colors.importante-oscuro */
 }

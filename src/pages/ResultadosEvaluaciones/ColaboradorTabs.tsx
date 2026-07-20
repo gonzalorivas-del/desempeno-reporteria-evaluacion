@@ -1,6 +1,6 @@
 import styles from './ColaboradorTabs.module.css';
 
-export const COLABORADOR_TABS = ['Resumen', 'Competencias', 'Objetivos', 'Cualitativas / Feedback'] as const;
+export const COLABORADOR_TABS = ['Resumen', 'Dimensión', 'Competencias', 'Objetivos', 'Cualitativas / Feedback'] as const;
 export type ColaboradorTab = (typeof COLABORADOR_TABS)[number];
 
 export interface ColaboradorTabsProps {
@@ -9,11 +9,10 @@ export interface ColaboradorTabsProps {
 }
 
 /**
- * Barra de tabs de Vista Colaborador. Solo "Resumen" tiene contenido
- * desarrollado en este prototipo — es el único tab incluido en el diseño de
- * origen (nodo 869:12641); el resto cambia el estado activo pero muestra un
- * aviso de contenido no disponible.
- * Fuente: Figma nodo 869:12692 ("Tabs").
+ * Barra de tabs de Vista Colaborador. "Resumen" y "Dimensión" tienen contenido
+ * desarrollado en este prototipo; el resto cambia el estado activo pero
+ * muestra un aviso de contenido no disponible.
+ * Fuente: Figma nodo 869:12692 ("Tabs") y 1116:6284 (con "Dimensión" activa).
  */
 export function ColaboradorTabs({ active, onChange }: ColaboradorTabsProps) {
   return (

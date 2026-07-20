@@ -1,0 +1,143 @@
+/*
+ * ObjetivosIndividualesTable — Vista Colaborador, tab Objetivos (Rex+ Desempeño)
+ * Fuente: Figma nodo 869:11034 ("Panel-Objetivos").
+ *
+ * Tokens usados (src/tokens/tokens.json):
+ *   colors.blanco           → #FFFFFF   fondo de la tarjeta y filas
+ *   colors.panel            → #5780AD   título · relleno de barra (no alcanzado)
+ *   colors.fondo            → #F6F9FA   fondo del header de tabla
+ *   colors.primario-oscuro  → #0A396C   texto del header de tabla
+ *   colors.auxiliar         → #B6CEE7   bordes de fila
+ *   colors.negro-textos     → #333333   descripción del objetivo
+ *   colors.gris-oscuro      → #666666   contador "N de M alcanzados"
+ *   colors.exito            → #ACCA54   relleno de barra (alcanzado)
+ *   colors.dark-success     → #6C7E01   texto de cumplimiento (alcanzado)
+ *   colors.gris-secundario  → #E5E5E5   track de la barra
+ *   zafiro.border-radius.br-5 → 16px    radio de la tarjeta
+ *
+ * "Meta"/"Logrado" usan #878787 en el diseño — no coincide con ningún token
+ * documentado (el más cercano es colors.gris-textos #999999); se deja el hex
+ * literal del diseño en vez de forzar el token más próximo.
+ */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #FFFFFF;                    /* colors.blanco */
+  border-radius: 16px;                          /* zafiro.border-radius.br-5 */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 24px;
+}
+
+.title {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #5780AD;                               /* colors.panel */
+}
+
+.subtitle {
+  margin: 0;
+  flex-shrink: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #666666;                               /* colors.gris-oscuro */
+}
+
+.tableHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 33px;
+  padding: 0 24px;
+  background-color: #F6F9FA;                    /* colors.fondo */
+  border-bottom: 1px solid #B6CEE7;             /* colors.auxiliar */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #0A396C;                               /* colors.primario-oscuro */
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  box-sizing: border-box;
+}
+
+.rowDivider {
+  border-bottom: 1px solid #B6CEE7;             /* colors.auxiliar */
+}
+
+.colDescripcion {
+  flex: 1 0 0;
+  min-width: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  color: #333333;                               /* colors.negro-textos */
+}
+
+.colMeta {
+  flex-shrink: 0;
+  width: 100px;
+  font-size: 13px;
+}
+
+.metaText {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #878787;
+}
+
+.logradoText {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  color: #333333;                               /* colors.negro-textos */
+}
+
+.colCumplimiento {
+  flex-shrink: 0;
+  width: 130px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.colProgreso {
+  flex-shrink: 0;
+  width: 180px;
+  display: flex;
+  align-items: center;
+}
+
+.track {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background-color: #E5E5E5;                    /* colors.gris-secundario */
+  overflow: hidden;
+}
+
+.fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.2s ease;
+}

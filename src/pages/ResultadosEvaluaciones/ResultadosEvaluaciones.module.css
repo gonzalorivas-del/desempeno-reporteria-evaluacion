@@ -143,6 +143,26 @@
   text-decoration: underline;
 }
 
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 48px 24px;
+  margin: 0 8px;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.placeholder p {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #666666;                              /* colors.gris-oscuro */
+}
+
 .kpiRow {
   display: flex;
   gap: 16px;                                   /* zafiro.margin.m-4 */

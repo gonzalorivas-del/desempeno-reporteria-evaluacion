@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DataTable } from '../../components/DataTable';
 import type { DataTableColumn, DataTableRow } from '../../components/DataTable';
 import type { BadgeVariant } from '../../components/Badge';
@@ -31,6 +31,8 @@ export interface OrganizacionSectionProps {
   rows: OrganizacionNode[];
   /** Callback al hacer clic en la pill "Ver detalles" de un registro — navega a Vista Equipo. */
   onSelectEquipo?: (node: OrganizacionNode) => void;
+  /** Notifica cada vez que cambia el nivel de drill-down (incluyendo el mount inicial, con path=[]) — permite que el sidebar refleje el mismo nivel que esta tabla. */
+  onPathChange?: (path: OrganizacionNode[]) => void;
 }
 
 /**
@@ -41,8 +43,13 @@ export interface OrganizacionSectionProps {
  * navegable (Organización / Nivel 1 / Nivel 2 / ...).
  * Fuente: Figma nodo 1038:8435 ("Table").
  */
-export function OrganizacionSection({ rows, onSelectEquipo }: OrganizacionSectionProps) {
+export function OrganizacionSection({ rows, onSelectEquipo, onPathChange }: OrganizacionSectionProps) {
   const [path, setPath] = useState<OrganizacionNode[]>([]);
+
+  useEffect(() => {
+    onPathChange?.(path);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [path]);
 
   const currentLevel = path.length === 0 ? rows : path[path.length - 1].children ?? [];
 

@@ -1,0 +1,176 @@
+/*
+ * CompetenciasAccordion — Vista Colaborador, tab Competencias (Rex+ Desempeño)
+ * Fuente: Figma nodo 869:10853 ("Panel-Accordion").
+ *
+ * Tokens usados (src/tokens/tokens.json):
+ *   colors.blanco          → #FFFFFF   fondo de la tarjeta / cards de dirección
+ *   colors.fondo            → #F6F9FA   fondo del contenido expandido
+ *   colors.auxiliar         → #B6CEE7   separador entre competencias
+ *   colors.negro-textos     → #333333   labels y valores
+ *   colors.importante       → #00B4FF   ícono chevron
+ *   colors.gris-textos      → #999999   label de las cards de dirección
+ *   colors.gris-secundario  → #E5E5E5   track de las barras
+ *   colors.panel            → #5780AD   relleno de barra (logrado < esperado)
+ *   colors.exito            → #ACCA54   relleno de barra (logrado >= esperado)
+ *   colors.dark-success     → #6C7E01   texto delta (logrado >= esperado)
+ *   colors.gris-oscuro      → #666666   texto delta (logrado < esperado)
+ *   zafiro.border-radius.br-5 → 16px    radio de tarjetas
+ */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 2px 8px 8px;
+  background-color: #FFFFFF;                     /* colors.blanco */
+  border-radius: 16px;                           /* zafiro.border-radius.br-5 */
+  box-sizing: border-box;
+}
+
+.files {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  background-color: #FFFFFF;                     /* colors.blanco */
+}
+
+.groupDivider {
+  border-bottom: 1px solid #B6CEE7;              /* colors.auxiliar */
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: #00B4FF;                                /* colors.importante — siempre este color */
+}
+
+.label {
+  flex-shrink: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;                                /* colors.negro-textos */
+}
+
+.progArea {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1 0 0;
+  min-width: 0;
+  justify-content: flex-end;
+}
+
+.track {
+  position: relative;
+  flex: 1 0 0;
+  min-width: 0;
+  max-width: 357px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: #E5E5E5;                     /* colors.gris-secundario */
+  overflow: visible;
+}
+
+.trackSmall {
+  position: relative;
+  width: 100%;
+  max-width: 150px;
+  height: 6px;
+  border-radius: 3px;
+  background-color: #E5E5E5;                     /* colors.gris-secundario */
+  overflow: visible;
+}
+
+.fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.tick {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  width: 2px;
+  background-color: #0A396C;                     /* colors.primario-oscuro */
+  transform: translateX(-1px);
+}
+
+.deltaText {
+  flex-shrink: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.body {
+  display: flex;
+  gap: 24px;                                     /* zafiro.margin.m-5 */
+  align-items: stretch;
+  width: 100%;
+  padding: 12px 24px;
+  background-color: #F6F9FA;                     /* colors.fondo */
+  box-sizing: border-box;
+}
+
+.direccionCard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 0 0;
+  min-width: 0;
+  padding: 10px 12px;
+  background-color: #FFFFFF;                     /* colors.blanco */
+  border-radius: 16px;                           /* zafiro.border-radius.br-5 */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.direccionLabel {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #999999;                                /* colors.gris-textos */
+}
+
+.direccionValor {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.3;
+  color: #333333;                                /* colors.negro-textos */
+}

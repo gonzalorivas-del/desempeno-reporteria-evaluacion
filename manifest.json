@@ -40,7 +40,8 @@
       "Matriz9Box",
       "GraficoBarrasAgrupado",
       "Modal (solo variante side-panel)",
-      "GraficoArania"
+      "GraficoArania",
+      "GraficoLinea"
     ],
     "pendingComponents": [
       "Modal (variantes default/success/alert/error/input/decision)",
@@ -3460,7 +3461,7 @@
       "name": "SidebarNiveles",
       "status": "implemented",
       "file": "src/components/SidebarNiveles/SidebarNiveles.tsx",
-      "description": "Navegación lateral de dos grupos ('Niveles' y 'Áreas / Gerencias') usada en las vistas del reporte de Resultados de Evaluaciones. Cada grupo muestra un título en color panel y una lista de ítems seleccionables; el ítem activo se resalta en color importante.",
+      "description": "Navegación lateral de dos grupos: 'Niveles' (Vista Empresa / Resultados Históricos) y 'Áreas / Gerencias', esta última con jerarquía de 3 niveles Área → Equipo → Colaborador. Cada área es un botón con un ícono chevron (abajo si está colapsada, arriba si está desplegada), siempre en color importante — no cambia con el estado activo. Por defecto ningún área muestra sus equipos; clic en el nombre del área navega a su Vista Área/Gerencia Y despliega en acordeón todos sus equipos a la vez (las demás áreas no muestran ninguno hasta que se les hace clic). La lista de equipos del área activa refleja el mismo nivel de drill-down en el que esté la tabla 'Organización' de esa vista — si el usuario navega ahí a un nivel más profundo (ej. clic en 'Dirección de Tecnología' → 'Depto. Desarrollo'), el sidebar reemplaza sus equipos por los de ese nivel exacto, no siempre los de la raíz. Cada equipo (y el colaborador anidado, si lo hay) lleva un punto/dot antes del texto para diferenciarlos mejor del nombre del área, con 8px de espacio entre el área y cada equipo y entre equipos consecutivos. Los nombres de equipo se cortan a un máximo de 2 líneas con '…' si no caben, mostrando el nombre completo en un tooltip nativo al hacer hover. El colaborador solo aparece como un 3er nivel de texto (no interactivo) bajo su equipo, cuando hay uno seleccionado. Solo el ítem realmente activo (el más profundo del recorrido: Área, Equipo o Colaborador) se resalta en color importante-oscuro — sus ancestros vuelven a su color default, pero el área permanece desplegada (chevron arriba) mientras su árbol siga siendo el que está en pantalla, sin importar cuán profundo se haya navegado.",
       "props": [
         {
           "name": "niveles",
@@ -3470,9 +3471,15 @@
         },
         {
           "name": "areas",
-          "type": "SidebarNivelesItem[]",
+          "type": "SidebarAreaItem[]",
           "required": true,
-          "description": "Ítems del grupo 'Áreas / Gerencias'. `{ label, active? }`."
+          "description": "Ítems del grupo 'Áreas / Gerencias'. `{ label, active?, expanded?, equipos: SidebarEquipoItem[] }` — `expanded` controla la orientación del chevron (independiente de `active`: sigue en true mientras se navegue dentro del árbol del área, aunque el resaltado de color ya haya pasado a un equipo o colaborador). `equipos` es la lista de equipos del nivel de drill-down actual para esa área (raíz por defecto, o el nivel al que se haya navegado en la tabla Organización) si `expanded`, ninguno si no (no hay vista previa)."
+        },
+        {
+          "name": "colaboradorActivo",
+          "type": "string | null",
+          "required": false,
+          "description": "Nombre del colaborador seleccionado. Se renderiza como texto (no botón) bajo el equipo cuyo `active` sea true."
         },
         {
           "name": "onSelectNivel",
@@ -3484,7 +3491,13 @@
           "name": "onSelectArea",
           "type": "(label: string) => void",
           "required": false,
-          "description": "Callback al seleccionar un ítem de 'Áreas / Gerencias'."
+          "description": "Callback al seleccionar el nombre de un área."
+        },
+        {
+          "name": "onSelectEquipo",
+          "type": "(areaLabel: string, equipoLabel: string) => void",
+          "required": false,
+          "description": "Callback al seleccionar un equipo — navega directo a Vista Equipo sin pasar por Vista Área."
         },
         {
           "name": "className",
@@ -3500,9 +3513,14 @@
           "usage": "Título de cada grupo"
         },
         {
+          "token": "colors.importante-oscuro",
+          "value": "#019BE5",
+          "usage": "Ítem activo en los 3 niveles (Niveles, Área, Equipo) y texto de Colaborador — corregido para igualar el pixel exacto de Figma, que usa este tono y no colors.importante (#00B4FF)"
+        },
+        {
           "token": "colors.importante",
           "value": "#00B4FF",
-          "usage": "Ítem activo"
+          "usage": "Ícono chevron de cada área — siempre este color, sin importar si el área está activa o no"
         },
         {
           "token": "colors.gris-oscuro",
@@ -3510,7 +3528,7 @@
           "usage": "Ítem inactivo"
         }
       ],
-      "notes": "Fuente: Figma nodo 664:1253 ('Sidebar')."
+      "notes": "Fuente: Figma nodo 664:1253 ('Sidebar', estado por defecto), 1141:6827 (ejemplo con área Comercial activa/expandida), 1146:7507 (ícono chevron por área) y 1146:7512 (dot por equipo + espaciado de 8px). El nivel Área siempre usa font-weight medium (activo o no); Equipo y Colaborador siempre usan font-weight regular — en ambos casos solo el color cambia al activarse, igualando el pixel exacto de los frames de Figma en vez de aplicarles peso medium adicional. El dot de cada equipo/colaborador usa `background-color: currentColor`, por lo que sigue automáticamente el color default/activo del propio ítem sin necesitar lógica adicional."
     },
     {
       "name": "IndicadorCard",
@@ -3843,6 +3861,99 @@
         }
       ],
       "notes": "Fuente: Figma nodo 869:11817 ('Group-chart'), sección 'Gráfico de Araña — Equipo' de Vista Equipo. Usado con series Valor Logrado (colors.intermedio, filled) / Valor Esperado (colors.auxiliar, outline) y 5 ejes de competencias (Liderazgo, Comunicación, Trabajo en equipo, Resolución, Adaptabilidad). El margen fijo de etiqueta (LABEL_MARGIN=78px, no proporcional al tamaño) fue necesario tras detectar en Phase 8 que un margen basado en fracción del radio cortaba las etiquetas más largas ('Trabajo en equipo', 'Comunicación') contra el borde del SVG; el <svg> además usa overflow:visible como respaldo. Exporta tipos: GraficoAraniaProps, GraficoAraniaAxis, GraficoAraniaSerie."
+    },
+    {
+      "name": "GraficoLinea",
+      "status": "implemented",
+      "file": "src/components/GraficoLinea/GraficoLinea.tsx",
+      "description": "Gráfico de líneas cartesiano (sin librería externa): múltiples series trazadas sobre un mismo eje de N categorías, con grillas y etiquetas horizontales del eje Y, marcadores circulares por punto, y leyenda. Soporta etiquetas del eje X en 2 filas alternadas para evitar solapamiento cuando hay muchas categorías con nombres largos, puntos 'testimoniales' (marcador hueco en vez de sólido, para valores con pocas respuestas) y un popup con el valor exacto al pasar el mouse sobre cualquier punto. Genérico y reutilizable para cualquier comparación de series por categoría (ej. calificación obtenida vs. autoevaluación, por competencia).",
+      "props": [
+        {
+          "name": "categorias",
+          "type": "GraficoLineaCategoria[]",
+          "required": true,
+          "description": "Categorías del eje X, en orden. { key, label }."
+        },
+        {
+          "name": "series",
+          "type": "GraficoLineaSerie[]",
+          "required": true,
+          "description": "Series a graficar. { key, label, color }."
+        },
+        {
+          "name": "values",
+          "type": "Record<string, Record<string, number>>",
+          "required": true,
+          "description": "Valores por serie y por categoría: values[serieKey][categoriaKey]."
+        },
+        {
+          "name": "testimonial",
+          "type": "Record<string, Record<string, boolean>>",
+          "required": false,
+          "description": "Puntos con pocas respuestas — mismo shape que `values`. Se dibujan con marcador hueco (relleno blanco, borde del color de la serie) en vez de sólido, y el popup de hover agrega la nota 'Testimonial (pocas respuestas)'. Si algún punto está marcado, la leyenda agrega automáticamente un ítem explicando el marcador hueco."
+        },
+        {
+          "name": "domain",
+          "type": "[number, number]",
+          "required": false,
+          "default": "[0, 100]",
+          "description": "Rango de valores del eje Y."
+        },
+        {
+          "name": "ticks",
+          "type": "number[]",
+          "required": false,
+          "description": "Marcas explícitas del eje Y. Default: 5 pasos equidistantes dentro de domain."
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "required": false,
+          "default": 200,
+          "description": "Alto del área de trazado en px."
+        },
+        {
+          "name": "twoRowLabels",
+          "type": "boolean",
+          "required": false,
+          "default": false,
+          "description": "Alterna las etiquetas del eje X en 2 filas (par/impar) — evita solapamiento con muchas categorías de nombre largo."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Clase CSS adicional."
+        }
+      ],
+      "tokens": [
+        {
+          "token": "colors.gris-secundario",
+          "value": "#E5E5E5",
+          "usage": "Grillas horizontales del eje Y"
+        },
+        {
+          "token": "colors.gris-oscuro",
+          "value": "#666666",
+          "usage": "Etiquetas del eje Y"
+        },
+        {
+          "token": "colors.negro-textos",
+          "value": "#333333",
+          "usage": "Etiquetas del eje X / fondo del popup de hover"
+        },
+        {
+          "token": "colors.gris-textos",
+          "value": "#999999",
+          "usage": "Borde del marcador hueco 'testimonial' en la leyenda"
+        },
+        {
+          "token": "colors.alerta",
+          "value": "#FFB800",
+          "usage": "Nota 'Testimonial (pocas respuestas)' dentro del popup de hover"
+        }
+      ],
+      "notes": "Fuente: Figma nodo 1128:9 ('Grafico-Comparativo-Obtenido-Autoeval'), usado en Vista Colaborador — tab Resumen — sección 'Comparativo Obtenido vs. Autoevaluación' (requerimiento: ticket RDV-2529 de Jira), con series Obtenido (colors.alerta #FFB800) / Autoevaluación (colors.error #E24C4C), domain [3.5, 7] y 14 categorías de competencia con twoRowLabels=true. El SVG usa un viewBox fijo (983px de ancho de trazado + 40px de eje Y, calcado del frame de Figma) con preserveAspectRatio='none' para estirarse al ancho real de la tarjeta sin distorsión perceptible. El popup de hover se implementa con un <foreignObject> posicionado en las mismas coordenadas del SVG (se voltea hacia abajo del punto si no cabe arriba, y se acota horizontalmente para no salirse del viewBox) — cada punto tiene un círculo invisible más grande (r=8) superpuesto al marcador visible (r=3) como área de hover, ya que el marcador solo es muy pequeño para apuntar con precisión. Exporta tipos: GraficoLineaProps, GraficoLineaCategoria, GraficoLineaSerie."
     }
   ]
 }

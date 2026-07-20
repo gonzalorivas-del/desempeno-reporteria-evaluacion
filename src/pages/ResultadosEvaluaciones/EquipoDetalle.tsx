@@ -42,7 +42,7 @@ const CARGOS_POOL = [
 
 function buildTitle(jefatura: string): string {
   if (/^Equipo\b/.test(jefatura)) return `Vista - ${jefatura}`;
-  if (/^Depto\.\b/.test(jefatura)) return `Vista - Equipo ${jefatura}`;
+  if (/^Depto\./.test(jefatura)) return `Vista - Equipo ${jefatura}`;
   return `Vista - Equipo Gerencia ${jefatura}`;
 }
 

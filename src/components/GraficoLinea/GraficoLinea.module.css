@@ -1,0 +1,124 @@
+/*
+ * GraficoLinea — Zafiro Design System (Rex+)
+ * Fuente: Figma nodo 1128:9 ("Grafico-Comparativo-Obtenido-Autoeval").
+ *
+ * Tokens usados (src/tokens/tokens.json):
+ *   colors.gris-secundario → #E5E5E5   grillas horizontales / texto del popup
+ *   colors.gris-oscuro     → #666666   etiquetas del eje Y
+ *   colors.negro-textos    → #333333   etiquetas del eje X / fondo del popup
+ *   colors.gris-textos     → #999999   borde del marcador "testimonial" (leyenda)
+ *   colors.alerta          → #FFB800   nota "Testimonial" dentro del popup
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  overflow: visible;                                /* respaldo: evita cortar etiquetas de los extremos */
+}
+
+.gridline {
+  stroke: #E5E5E5;                                  /* colors.gris-secundario */
+  stroke-width: 1;
+}
+
+.yLabel {
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+  fill: #666666;                                    /* colors.gris-oscuro */
+}
+
+.xLabel {
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+  fill: #333333;                                    /* colors.negro-textos */
+}
+
+.legend {
+  display: flex;
+  gap: 16px;                                         /* zafiro.margin.m-4 */
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legendSwatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legendLabel {
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  color: #555555;
+}
+
+.legendSwatchHollow {
+  background-color: #FFFFFF;
+  border: 2px solid #999999;                          /* colors.gris-textos */
+  box-sizing: border-box;
+}
+
+.tooltip {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: fit-content;
+  max-width: 168px;
+  padding: 6px 10px;
+  background-color: #333333;                          /* colors.negro-textos */
+  border-radius: 6px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+}
+
+.tooltipCategoria {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: #FFFFFF;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tooltipValor {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  color: #E5E5E5;                                     /* colors.gris-secundario */
+  white-space: nowrap;
+}
+
+.tooltipSwatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tooltipTestimonial {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+  font-style: italic;
+  color: #FFB800;                                     /* colors.alerta */
+}
